@@ -4,6 +4,7 @@ using RemoteClaimTransformer.Services;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 
+//This transformer will be triggered in the case of passing a valid JWT token to the .Net application
 internal sealed class RemoteClaimsTransformation : IClaimsTransformation
 {
     private readonly UserClaimService _userClaimService;

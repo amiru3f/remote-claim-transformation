@@ -2,6 +2,7 @@ namespace RemoteClaimTransformer.Auth;
 
 using Microsoft.AspNetCore.Authorization;
 
+//This class will be triggered only in the case of Controller-Based-Apis
 internal sealed class MustHavePermissionRequirementHandler : IAuthorizationRequirement, IAuthorizationHandler
 {
     internal const string PolicyName = "RequiresPermission";
