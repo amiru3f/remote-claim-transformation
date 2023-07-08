@@ -21,6 +21,8 @@ internal sealed class RemoteClaimsTransformation : IClaimsTransformation
 
         if (principal?.Identity?.IsAuthenticated is true)
         {
+            //here you can simply call a GRPC endpoint, database, REST API or whatever you prefer
+            //please don't forget the cache ;-)
             userClaims = await _userClaimService.GetPermissionsByJwtTokenOrSubAsync(_httpContextAccessor!.HttpContext!.User!.Identity!.Name!, _httpContextAccessor.HttpContext!.Request!.Headers!.Authorization!);
         }
 
