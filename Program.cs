@@ -31,9 +31,7 @@ builder.Services
 
 builder.Services.AddControllers();
 
-builder.Services.AddAuthorization(opts =>
-        opts.AddPolicy(MustHavePermissionRequirementHandler.PolicyName, policy =>
-        policy.AddRequirements(new MustHavePermissionRequirementHandler())));
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 

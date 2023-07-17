@@ -1,31 +1,24 @@
 namespace RemoteClaimTransformer.Auth;
 
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-public sealed class RequirePermissionAttribute : Attribute, IAuthorizeData
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
+public sealed class RequireClaimAttribute : Attribute, IAuthorizationRequirementData
 {
-    public string Permissions { set; get; }
+    public string AllowedClaimType { get; }
+    public string AllowedValues { set; get; }
 
-    public RequirePermissionAttribute(string permissions)
+    public RequireClaimAttribute(string allowedClaimType, string allowedValues)
     {
-        Permissions = permissions;
-        Policy = MustHavePermissionRequirementHandler.PolicyName;
+        AllowedClaimType = allowedClaimType;
+        AllowedValues = allowedValues;
     }
 
-    //
-    // Summary:
-    //     Gets or sets the policy name that determines access to the resource.
-    public string? Policy { get; set; }
 
-    //
-    // Summary:
-    //     Gets or sets a comma delimited list of roles that are allowed to access the resource.
-    public string? Roles { get; set; }
-
-    //
-    // Summary:
-    //     Gets or sets a comma delimited list of schemes from which user information is
-    //     constructed.
-    public string? AuthenticationSchemes { get; set; }
+    public IEnumerable<IAuthorizationRequirement> GetRequirements()
+    {
+        yield return new ClaimsAuthorizationRequirement(AllowedClaimType, AllowedValues?.Split(',')?.Select(v => v.Trim()));
+    }
 }

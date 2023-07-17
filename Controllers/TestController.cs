@@ -6,6 +6,6 @@ namespace RemoteClaimTransformer.Controllers;
 public class TestController : Controller
 {
     [Route("access-through-controller")]
-    [RequirePermission("P1")]
+    [RequireClaim(Constants.PermissionClaimName, "P1")]
     public string Index() => $"Access granted to {User!.Identity!.Name}";
 }
