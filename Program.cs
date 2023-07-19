@@ -40,7 +40,7 @@ app
     .UseAuthentication();
 
 app.MapGet("/grant-through-minimal-api", (ClaimsPrincipal user) => user!.Identity!.Name)
-.RequireAuthorization(policy => policy.RequireClaim(Constants.PermissionClaimName, "P1"));
+.RequireAuthorization(policy => policy.RequireClaim(Constants.PermissionClaimName, Constants.P1_Permission));
 
 app.UseAuthorization();
 

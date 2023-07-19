@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using Microsoft.Extensions.Caching.Memory;
+using RemoteClaimTransformer.Auth;
 
 namespace RemoteClaimTransformer.Services;
 
@@ -29,8 +30,8 @@ internal sealed class UserClaimService
 
         return ValueTask.FromResult<IEnumerable<Claim>>(new List<Claim>()
         {
-            new(permClaimName, "P1"),
-            new(permClaimName, "P2")
+            new(permClaimName, Constants.P1_Permission),
+            new(permClaimName, Constants.P2_Permission)
         });
     }
 

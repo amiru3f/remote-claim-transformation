@@ -16,9 +16,8 @@ public sealed class RequireClaimAttribute : Attribute, IAuthorizationRequirement
         AllowedValues = allowedValues;
     }
 
-
     public IEnumerable<IAuthorizationRequirement> GetRequirements()
     {
-        yield return new ClaimsAuthorizationRequirement(AllowedClaimType, AllowedValues?.Split(',')?.Select(v => v.Trim()));
+        yield return new ClaimsAuthorizationRequirement(AllowedClaimType, AllowedValues?.Split(','));
     }
 }
