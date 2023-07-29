@@ -19,6 +19,8 @@ Pretty simple .Net out-of-the-box supprted interface, `IClaimsTranformation` whi
 
 ## How to run
 
+Make sure you have .Net 8.0 v8.0.100-preview.6 installed
+
 Just run the project in debug mode and use the following curl to check both of the endpoints
 
 ```bash
