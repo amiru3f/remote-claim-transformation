@@ -21,6 +21,7 @@ builder.Services
                     options.TokenValidationParameters.ValidateIssuer = false;
                     options.TokenValidationParameters.ValidateIssuerSigningKey = false;
                     options.TokenValidationParameters.ValidateLifetime = false;
+                    //Next preview version: options.TokenHandlers.Add(...)
 
                     options.TokenValidationParameters.SignatureValidator = (token, validationParams) =>
                     {
