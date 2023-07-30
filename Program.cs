@@ -10,7 +10,7 @@ builder.Services
                 .AddMemoryCache()
                 .AddHttpContextAccessor()
                 .AddTransient<UserClaimService>()
-                .AddScoped<IClaimsTransformation, RemoteClaimsTransformation>()
+                .AddSingleton<IClaimsTransformation, RemoteClaimsTransformation>()
                 .AddAuthentication()
                 .AddJwtBearer(options =>
                 {
